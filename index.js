@@ -60,6 +60,6 @@ log(
   let output;
   if (systemType === 0) {
     output = fs.writeFileSync(path.resolve(__dirname, "webpack.config.js"), wp);
+    log("Succesfully generated your webpack.config.js");
   }
-  log("Succesfully generated your webpack.config.js");
 })();

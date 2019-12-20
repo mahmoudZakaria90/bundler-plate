@@ -3,22 +3,22 @@ module.exports = [
     type: "select",
     name: "systemType",
     message: "What kind of bundler/build system do you want to use",
-    choices: ["webpack", "gulp"]
+    choices: ["gulp", "webpack"]
   },
   {
-    type: prev => (prev === 0 ? "confirm" : "select"),
-    name: prev => (prev === 0 ? "babelInclude" : "markup"),
+    type: prev => (prev === 1 ? "confirm" : "select"),
+    name: prev => (prev === 1 ? "babelInclude" : "markup"),
     message: prev =>
-      prev === 0
+      prev === 1
         ? "Would you like to transpile ES6 using babel"
         : "What markup would you like to use?",
     choices: ["HTML", "Pug"]
   },
   {
-    type: (_null, { systemType }) => (systemType === 0 ? "confirm" : null),
-    name: (_null, { systemType }) => (systemType === 0 ? "extractCSS" : null),
+    type: (_null, { systemType }) => (systemType === 1 ? "confirm" : null),
+    name: (_null, { systemType }) => (systemType === 1 ? "extractCSS" : null),
     message: (_null, { systemType }) =>
-      systemType === 0
+      systemType === 1
         ? "Would you like to extract css output to a seperate file"
         : null
   },
