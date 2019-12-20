@@ -21,5 +21,11 @@ module.exports = [
       systemType === 0
         ? "Would you like to extract css output to a seperate file"
         : null
+  },
+  {
+    type: "select",
+    name: "packageManager",
+    message: "What package manager do you use",
+    choices: ["npm", "yarn"]
   }
 ];

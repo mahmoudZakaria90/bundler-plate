@@ -4,13 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ENV=dev node index.js",
-    "build": "node index.js"
+    "dev": "node index.js",
+    "rm": "yarn remove babel-loader @babel/core @babel/preset-env webpack; yarn cache clean"
   },
   "dependencies": {
     "cfonts": "^2.4.5",
     "chalk": "^3.0.0",
-    "prompts": "^2.3.0"
+    "prompts": "^2.3.0",
+    "shelljs": "^0.8.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
