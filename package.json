@@ -1,0 +1,18 @@
+{
+  "name": "webpack-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ENV=dev node index.js",
+    "build": "node index.js"
+  },
+  "dependencies": {
+    "cfonts": "^2.4.5",
+    "chalk": "^3.0.0",
+    "prompts": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
