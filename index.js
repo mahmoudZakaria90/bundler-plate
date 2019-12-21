@@ -1,14 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const prompts = require("prompts");
-const chalk = require("chalk");
-const CFonts = require("cfonts");
-const { exec } = require("shelljs");
-const log = (txt, color = "lightblue") =>
-  console.log(chalk.keyword(color)(txt));
 
+const CFonts = require("cfonts");
+const { log } = require("./utils");
 const questions = require("./questions");
-const { babelLoader } = require("./loaders");
 
 //Intro
 log("Hello and Welcome!");
@@ -28,38 +24,18 @@ log(
 //Inputs/Questions
 (async () => {
   const response = await prompts(questions);
-  console.log(response);
-  const { systemType, babelInclude, packageManager } = response;
+  const { toolType, packageManager, babelInclude, extractCSS } = response;
+  console.log(packageManager);
 
-  babelInclude && log("Installing babels...");
-  exec(
-    packageManager === 1
-      ? "sh ./babelLoaders.sh"
-      : "npm install -D babel-loader @babel/core @babel/preset-env webpack"
+  fs.writeFileSync(
+    path.resolve(
+      __dirname,
+      `${toolType}.${toolType === "webpack" && "config."}js`
+    ),
+    require(`./external/${toolType}/${packageManager}/execOutput`)(
+      babelInclude,
+      extractCSS
+    )
   );
-
-  const wp = `const path = require('path');
-
-    module.exports = {
-        entry: {
-            index: path.resolve(__dirname, 'index.js'),
-            // Continue add your multiple entries if any...
-        },
-        output: {
-            filename: '[name].js',
-            path: path.resolve(__dirname, 'dist/')
-        },
-        module: {
-            rules: [
-                ${babelInclude && JSON.stringify(babelLoader)}
-            ]
-        }
-    }
-  `;
-
-  let output;
-  if (systemType === 1) {
-    output = fs.writeFileSync(path.resolve(__dirname, "webpack.config.js"), wp);
-    log("Succesfully generated your webpack.config.js");
-  }
+  log("Succesfully generated your webpack.config.js", "green");
 })();
