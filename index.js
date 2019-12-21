@@ -24,18 +24,19 @@ log(
 //Inputs/Questions
 (async () => {
   const response = await prompts(questions);
-  const { toolType, packageManager, babelInclude, extractCSS } = response;
-  console.log(packageManager);
+  if (
+    Object.keys(response).length !== questions.length &&
+    response.constructor === Object
+  )
+    process.exit();
+  const { toolType, packageManager } = response;
 
   fs.writeFileSync(
     path.resolve(
       __dirname,
       `${toolType}.${toolType === "webpack" && "config."}js`
     ),
-    require(`./external/${toolType}/${packageManager}/execOutput`)(
-      babelInclude,
-      extractCSS
-    )
+    require(`./external/${toolType}/${packageManager}/execOutput`)(response)
   );
   log("Succesfully generated your webpack.config.js", "green");
 })();

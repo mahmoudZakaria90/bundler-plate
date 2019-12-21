@@ -1,7 +1,10 @@
 module.exports = (babelLoader, extractCSS) => {
   return `const path = require('path');
-  ${extractCSS &&
-    "const miniCSSExtractPlugin = require('mini-css-extract-plugin');"}
+  ${
+    extractCSS
+      ? "const miniCSSExtractPlugin = require('mini-css-extract-plugin');"
+      : ""
+  }
 
     module.exports = {
         entry: {
@@ -15,16 +18,17 @@ module.exports = (babelLoader, extractCSS) => {
         
         modules: {
             rules: [
-                ${babelLoader},
-                {test: /\.s[a|c]ss$/, use [${
-                  extractCSS
-                    ? "miniCSSExtractPlugin.loader".replace('"', "")
-                    : "style-loader"
+                ${babelLoader ? `${babelLoader},` : ""} 
+                {test: /\.s[a|c]ss$/, use: [${
+                  extractCSS ? "miniCSSExtractPlugin.loader" : `"style-loader"`
                 }, 'css-loader', 'sass-loader']}
             ]
         },
         plugins: [
-            ${extractCSS &&
-              'new miniCSSExtractPlugin({filename: "[name].css"})'}
-        ]`;
+            ${
+              extractCSS
+                ? 'new miniCSSExtractPlugin({filename: "[name].css"})'
+                : ""
+            }
+        ]};`;
 };
