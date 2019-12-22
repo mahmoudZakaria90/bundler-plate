@@ -27,6 +27,19 @@ module.exports = [
         : null
   },
   {
+    type: (_null, { toolType }) => (toolType === "webpack" ? "select" : null),
+    name: (_null, { toolType }) =>
+      toolType === "webpack" ? "templateEngine" : null,
+    message: (_null, { toolType }) =>
+      toolType === "webpack"
+        ? "What template type/engine would you like to use"
+        : null,
+    choices: [
+      { title: "HTML", value: "html-webpack-plugin" },
+      { title: "Pug", value: "html-webpack-pug-plugin" }
+    ]
+  },
+  {
     type: "select",
     name: "packageManager",
     message: "What package manager do you use",

@@ -1,10 +1,14 @@
-module.exports = (babelLoader, extractCSS) => {
+module.exports = (babelLoader, extractCSS, templateEngine) => {
+  const templateVariable = templateEngine && templateEngine.replace(/\-/g, "");
+
   return `const path = require('path');
   ${
     extractCSS
       ? "const miniCSSExtractPlugin = require('mini-css-extract-plugin');"
       : ""
   }
+  ${templateEngine &&
+    `const ${templateVariable} = require("${templateEngine}");`}
 
     module.exports = {
         entry: {
@@ -29,6 +33,8 @@ module.exports = (babelLoader, extractCSS) => {
               extractCSS
                 ? 'new miniCSSExtractPlugin({filename: "[name].css"})'
                 : ""
-            }
-        ]};`;
+            }, 
+            ${templateEngine && `new ${templateVariable}()`}
+          ]
+      };`;
 };
