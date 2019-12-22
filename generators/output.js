@@ -11,14 +11,16 @@ module.exports = ({
   templateGenerate,
   packageManager
 }) => {
+  const path = __dirname + "/../shell";
+
   // Installing packages
   if (babelInclude) {
     log("Installing packages...");
     exec(
-      `sh ./shell/${toolType}/${packageManager}/babel-loaders.sh; sh ./shell/${toolType}/${packageManager}/sass-cssLoaders.sh;${
+      `sh ${path}/${toolType}/${packageManager}/babel-loaders.sh; sh ${path}/${toolType}/${packageManager}/sass-cssLoaders.sh;${
         extractCSS
-          ? `sh ./shell/${toolType}/${packageManager}/miniCSSExtractPlugin.sh`
-          : `sh ./shell/${toolType}/${packageManager}/style-loader.sh`
+          ? `sh ${path}/${toolType}/${packageManager}/miniCSSExtractPlugin.sh`
+          : `sh ${path}/${toolType}/${packageManager}/style-loader.sh`
       };${templateGenerate && "yarn add -D html-webpack-plugin"}`
     );
     log("Successfully installed packages", "green");

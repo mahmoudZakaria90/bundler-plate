@@ -29,7 +29,7 @@ log(
     response.constructor === Object
   )
     process.exit();
-  const { toolType, packageManager } = response;
+  const { toolType } = response;
 
   fs.writeFileSync(
     path.resolve(
