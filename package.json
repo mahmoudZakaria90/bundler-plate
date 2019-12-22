@@ -1,9 +1,13 @@
 {
   "name": "webpack-boilerplate",
   "version": "1.0.0",
+  "bin": {
+    "bp": "./lib/index.js"
+  },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "browserify index.js -o ./lib/index.js;chmod +x ./lib/index.js",
     "dev": "node index.js",
     "rm": "yarn remove babel-loader @babel/core @babel/preset-env webpack sass-loader style-loader css-loader mini-css-extract-plugin; yarn cache clean"
   },
@@ -12,5 +16,8 @@
     "chalk": "^3.0.0",
     "prompts": "^2.3.0",
     "shelljs": "^0.8.3"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.0"
   }
 }
