@@ -21,7 +21,7 @@ module.exports = (babelLoader, extractCSS, templateGenerate) => {
             path: path.resolve(__dirname, 'dist/')
         },
         
-        modules: {
+        module: {
             rules: [
                 ${babelLoader ? `${babelLoader},` : ""} 
                 {test: /\.s[a|c]ss$/, use: [${
