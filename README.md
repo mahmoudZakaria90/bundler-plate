@@ -1,7 +1,7 @@
 # BundlerPlate.js
 ### A boilerplate or basic config file based on webpack/gulp.
 
-`(Note): works for now only for webpack`.
+`(Note): works for now only for webpack, gulp is on the way`.
 
 # Usage 
 
