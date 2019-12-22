@@ -18,8 +18,9 @@ CFonts.say("BundlerPlate.js", {
   letterSpacing: 2
 });
 
+log("A boilerplate or basic config file based on webpack/gulp \n");
 log(
-  "Please answer the following questions to generate the best config file for you."
+  "Please answer the following questions to generate the best config file for you.\n"
 );
 
 //Inputs/Questions
@@ -28,8 +29,10 @@ log(
   if (
     Object.keys(response).length !== questions.length &&
     response.constructor === Object
-  )
+  ) {
     process.exit();
+  }
+
   const { toolType } = response;
 
   fs.writeFileSync(

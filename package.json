@@ -1,21 +1,29 @@
 {
   "name": "bundler-plate",
   "description": "A boilerplate or basic config file for webpack/gulp.",
-  "keywords": ["webpack", "gulp", "bundler", "build-system", "task-runner"],
-  "version": "1.0.1",
+  "keywords": [
+    "webpack",
+    "gulp",
+    "bundler",
+    "build-system",
+    "task-runner"
+  ],
+  "version": "1.0.0",
   "bin": {
     "bp": "./lib/index.js"
   },
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "browserify index.js -o ./lib/index.js;chmod +x ./lib/index.js"
+    "dev": "node index",
+    "build": "rm -rf ./lib;browserify index.js -o ./lib/index.js;chmod +x ./lib/index.js"
   },
   "dependencies": {
     "cfonts": "^2.4.5",
     "chalk": "^3.0.0",
     "js-beautify": "^1.10.2",
-    "prompts": "^2.3.0"
+    "prompts": "^2.3.0",
+    "shelljs": "^0.8.3"
   },
   "devDependencies": {
     "browserify": "^16.5.0"

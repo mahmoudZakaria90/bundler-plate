@@ -1,5 +1,5 @@
 const { log } = require("../utils");
-const { exec } = require("child_process");
+const { exec } = require("shelljs");
 
 const wpBase = require("../base/webpack");
 const babelLoader = require("../tasks/webpack/babelLoader");
