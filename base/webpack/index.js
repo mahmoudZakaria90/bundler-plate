@@ -12,6 +12,7 @@ module.exports = (babelLoader, extractCSS, templateGenerate) => {
   }
 
     module.exports = {
+        mode: "development",
         entry: {
             index: path.resolve(__dirname, "index.js"),
             // Continue add your multiple entries if any...
