@@ -1,5 +1,5 @@
 {
-  "name": "webpack-boilerplate",
+  "name": "bundler-plate",
   "version": "1.0.0",
   "bin": {
     "bp": "./lib/index.js"
