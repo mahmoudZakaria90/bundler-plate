@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const prompts = require("prompts");
+const format = require("js-beautify");
 
 const CFonts = require("cfonts");
 const { log } = require("./utils");
@@ -36,7 +37,7 @@ log(
       process.cwd(),
       `${toolType}.${toolType === "webpack" && "config."}js`
     ),
-    require(`./generators/output`)(response)
+    format(require("./generators/output")(response))
   );
   log("Succesfully generated your webpack.config.js", "green");
 })();
