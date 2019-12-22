@@ -1,2 +1,2 @@
 #!/bin/zsh
-npm i -D sass-loader css-loader
+npm i -D sass-loader css-loader node-sass
