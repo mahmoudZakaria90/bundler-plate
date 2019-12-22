@@ -27,6 +27,15 @@ module.exports = [
         : null
   },
   {
+    type: (_null, { toolType }) => (toolType === "webpack" ? "confirm" : null),
+    name: (_null, { toolType }) =>
+      toolType === "webpack" ? "templateGenerate" : null,
+    message: (_null, { toolType }) =>
+      toolType === "webpack"
+        ? "Would you like to generate a HTML template"
+        : null
+  },
+  {
     type: "select",
     name: "packageManager",
     message: "What package manager do you use",

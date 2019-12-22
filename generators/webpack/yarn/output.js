@@ -4,7 +4,7 @@ const { exec } = require("shelljs");
 const wpBase = require("../../../base/webpack");
 const babelLoader = require("../../../tasks/webpack/babelLoader");
 
-module.exports = ({ babelInclude, extractCSS }) => {
+module.exports = ({ babelInclude, extractCSS, templateGenerate }) => {
   // Installing packages
   if (babelInclude) {
     log("Installing packages...");
@@ -13,12 +13,11 @@ module.exports = ({ babelInclude, extractCSS }) => {
         extractCSS
           ? "yarn add -D mini-css-extract-plugin"
           : "yarn add -D style-loader"
-      }`
+      };${templateGenerate && "yarn add -D html-webpack-plugin"}`
     );
     log("Successfully installed packages", "green");
   }
 
   const babelLoaderArg = babelInclude ? babelLoader : null;
-  //writing webpack
-  return wpBase(babelLoaderArg, extractCSS);
+  return wpBase(babelLoaderArg, extractCSS, templateGenerate);
 };

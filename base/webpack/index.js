@@ -1,8 +1,13 @@
-module.exports = (babelLoader, extractCSS) => {
+module.exports = (babelLoader, extractCSS, templateGenerate) => {
   return `const path = require('path');
   ${
     extractCSS
       ? "const miniCSSExtractPlugin = require('mini-css-extract-plugin');"
+      : ""
+  }
+  ${
+    templateGenerate
+      ? "const htmlWebpackPlugin = require('html-webpack-plugin');"
       : ""
   }
 
@@ -29,6 +34,8 @@ module.exports = (babelLoader, extractCSS) => {
               extractCSS
                 ? 'new miniCSSExtractPlugin({filename: "[name].css"})'
                 : ""
-            }
-        ]};`;
+            }, 
+            ${templateGenerate ? "new htmlWebpackPlugin()" : ""}
+          ]
+      };`;
 };

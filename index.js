@@ -36,7 +36,7 @@ log(
       __dirname,
       `${toolType}.${toolType === "webpack" && "config."}js`
     ),
-    require(`./external/${toolType}/${packageManager}/execOutput`)(response)
+    require(`./generators/${toolType}/${packageManager}/output`)(response)
   );
   log("Succesfully generated your webpack.config.js", "green");
 })();
