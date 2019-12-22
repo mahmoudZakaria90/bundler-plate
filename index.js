@@ -1,6 +1,8 @@
+#!/usr/bin/env node
 const fs = require("fs");
 const path = require("path");
 const prompts = require("prompts");
+const format = require("js-beautify");
 
 const CFonts = require("cfonts");
 const { log } = require("./utils");
@@ -13,7 +15,6 @@ log("Let's get started with");
 CFonts.say("BundlerPlate.js", {
   font: "block",
   colors: ["blue", "cyan"],
-
   letterSpacing: 2
 });
 
@@ -29,14 +30,14 @@ log(
     response.constructor === Object
   )
     process.exit();
-  const { toolType, packageManager } = response;
+  const { toolType } = response;
 
   fs.writeFileSync(
     path.resolve(
-      __dirname,
+      process.cwd(),
       `${toolType}.${toolType === "webpack" && "config."}js`
     ),
-    require(`./external/${toolType}/${packageManager}/execOutput`)(response)
+    format(require("./generators/output")(response))
   );
   log("Succesfully generated your webpack.config.js", "green");
 })();
