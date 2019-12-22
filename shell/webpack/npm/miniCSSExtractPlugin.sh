@@ -1,0 +1,1 @@
+npm i -D mini-css-extract-plugin
