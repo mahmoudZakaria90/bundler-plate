@@ -1,6 +1,8 @@
 {
-  "name": "gulp-webpack-bundler-plate",
-  "version": "1.0.0",
+  "name": "bundler-plate",
+  "description": "A boilerplate or basic config file for webpack/gulp.",
+  "keywords": ["webpack", "gulp", "bundler", "build-system", "task-runner"],
+  "version": "1.0.1",
   "bin": {
     "bp": "./lib/index.js"
   },
@@ -13,8 +15,7 @@
     "cfonts": "^2.4.5",
     "chalk": "^3.0.0",
     "js-beautify": "^1.10.2",
-    "prompts": "^2.3.0",
-    "shelljs": "^0.8.3"
+    "prompts": "^2.3.0"
   },
   "devDependencies": {
     "browserify": "^16.5.0"

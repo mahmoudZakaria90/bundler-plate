@@ -1,5 +1,5 @@
 # BundlerPlate.js
-### A boilerplate or basic config file for webpack/gulp.
+### A boilerplate or basic config file based on webpack/gulp.
 
 `(Note): works for now only for webpack`.
 
