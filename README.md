@@ -1,4 +1,4 @@
-# bundler-plate.js
+# bundler-plate
 ### A boilerplate and a basic config file for webpack/gulp based on user input.
 
 `(Note): works only for webpack for now, gulp is on the way`.
