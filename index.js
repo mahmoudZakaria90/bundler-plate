@@ -40,7 +40,7 @@ log(
       process.cwd(),
       `${toolType}.${toolType === "webpack" && "config."}js`
     ),
-    format(require("./generators/output")(response))
+    format(require(`./generators/${toolType}/output`)(response))
   );
   log("Succesfully generated your webpack.config.js", "green");
 })();

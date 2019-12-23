@@ -15,7 +15,7 @@ module.exports = [
       prev === "webpack"
         ? "Would you like to transpile ES6 using babel"
         : "What markup would you like to use?",
-    choices: ["HTML", "Pug"]
+    choices: ["HTML", { title: "Pug", value: "gulp-pug" }]
   },
   {
     type: (_null, { toolType }) => (toolType === "webpack" ? "confirm" : null),
