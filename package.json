@@ -1,6 +1,6 @@
 {
   "name": "bundler-plate",
-  "description": "A boilerplate or basic config file for webpack/gulp.",
+  "description": "A boilerplate and a basic config file for webpack/gulp based on user input.",
   "keywords": [
     "webpack",
     "gulp",
@@ -8,7 +8,7 @@
     "build-system",
     "task-runner"
   ],
-  "version": "1.0.7",
+  "version": "1.0.8",
   "bin": {
     "bp": "./index.js"
   },
