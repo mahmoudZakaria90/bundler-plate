@@ -3,7 +3,7 @@
 
 `(Note): works only for webpack for now, gulp is on the way`.
 
-# Installtion
+# Installation
 `yarn add -D bundler-plate` || `npm i -D bundler-plate`
 
 # Usage 
