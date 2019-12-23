@@ -26,19 +26,14 @@ log(
 //Inputs/Questions
 (async () => {
   const response = await prompts(questions);
-  if (
-    Object.keys(response).length !== questions.length &&
-    response.constructor === Object
-  ) {
-    process.exit();
-  }
 
   const { toolType } = response;
+  log(toolType);
 
   fs.writeFileSync(
     path.resolve(
       process.cwd(),
-      `${toolType}.${toolType === "webpack" && "config."}js`
+      `${toolType}${toolType === "webpack" ? ".config." : "file."}js`
     ),
     format(require(`./generators/${toolType}/output`)(response))
   );

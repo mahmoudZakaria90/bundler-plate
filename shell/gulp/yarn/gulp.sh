@@ -1,2 +1,2 @@
 #!/bin/zsh
-npm i -D gulp gulp-sass gulp-autoprefixer node-sass
+yarn add -D gulp gulp-sass gulp-autoprefixer node-sass
