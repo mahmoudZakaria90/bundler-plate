@@ -1,11 +1,11 @@
 # BundlerPlate.js
-### A boilerplate or basic config file based on webpack/gulp.
+### A boilerplate and a basic config file for webpack/gulp.
 
-`(Note): works for now only for webpack, gulp is on the way`.
+`(Note): works only for webpack for now, gulp is on the way`.
 
 # Usage 
 
-1. Run `bp`.
+1. Run `bp` or `npx bp`.
 2. Give inputs to the generated questions.
 3. Enjoy! <span style="color:red">&hearts;</span>.
 
