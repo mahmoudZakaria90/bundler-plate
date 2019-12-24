@@ -21,7 +21,7 @@ module.exports = [
     name: (_null, { toolType }) =>
       toolType === "webpack" ? "cssModules" : null,
     message: (_null, { toolType }) =>
-      toolType === "webpack" ? "Would you like to use css-modules" : null
+      toolType === "webpack" ? "Would you like to use css modules" : null
   },
   {
     type: (_null, { toolType }) => (toolType === "webpack" ? "confirm" : null),

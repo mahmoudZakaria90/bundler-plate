@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require("path");
 const prompts = require("prompts");
-const format = require("js-beautify");
+const { format } = require("prettier");
 
 const CFonts = require("cfonts");
 const { log } = require("./utils");
@@ -29,10 +29,11 @@ log(
 
   const { toolType, packageManager } = response;
 
+  if (!toolType || !packageManager) process.exit();
+
   log(`Based on your inputs you chose:
    - System: ${toolType}
-   - Package manager: ${packageManager}
-  `);
+   - Package manager: ${packageManager}`);
 
   fs.writeFileSync(
     path.resolve(

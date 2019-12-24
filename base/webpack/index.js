@@ -25,12 +25,12 @@ module.exports = (babelLoader, cssModules, extractCSS) => {
         module: {
             rules: [
                 ${babelLoader ? `${babelLoader},` : ""} 
-                {test: /\.s[a|c]ss$/, use: [${
+                {test: /\\.s[a|c]ss$/, use: [${
                   extractCSS ? "miniCSSExtractPlugin.loader" : `"style-loader"`
                 }, 
                 ${
                   !cssModules
-                    ? "css-loader"
+                    ? `"css-loader"`
                     : `{
                   loader: "css-loader",
                   options: {
@@ -42,20 +42,18 @@ module.exports = (babelLoader, cssModules, extractCSS) => {
                 }`
                 }, "sass-loader"]},
                 {
-                  test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/
+                  test: /\\.(woff(2)?|ttf|eot|svg)(\\?v=\\d+\\.\\d+\\.\\d+)?$/,
                   loader: "file-loader",
                   options: {
-                    name: ${env ===
-                      "dev"} ? "[name].[ext]" : "[name].[contentHash:8].[ext]",
+                    name: env === "dev" ? "[name].[ext]" : "[name].[contentHash:8].[ext]",
                     outputPath: "assets/fonts/"
                   }
                 },
                 {
-                  test: /\.(png|jpe?g|gif)$/,
+                  test: /\\.(png|jpe?g|gif)$/,
                   use : {
                       loader: 'url-loader',
-                      name: ${env ===
-                        "dev"} ? "[name].[ext]" : "[name].[contentHash:8].[ext]",
+                      name: env === "dev"? "[name].[ext]" : "[name].[contentHash:8].[ext]",
                       options : { limit: 8192, outputPath: "assets/images/" },
                   },
               },
