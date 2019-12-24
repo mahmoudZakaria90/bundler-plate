@@ -19,19 +19,17 @@ module.exports = [
   {
     type: (_null, { toolType }) => (toolType === "webpack" ? "confirm" : null),
     name: (_null, { toolType }) =>
-      toolType === "webpack" ? "extractCSS" : null,
+      toolType === "webpack" ? "cssModules" : null,
     message: (_null, { toolType }) =>
-      toolType === "webpack"
-        ? "Would you like to extract css output to a seperate file"
-        : null
+      toolType === "webpack" ? "Would you like to use css modules" : null
   },
   {
     type: (_null, { toolType }) => (toolType === "webpack" ? "confirm" : null),
     name: (_null, { toolType }) =>
-      toolType === "webpack" ? "templateGenerate" : null,
+      toolType === "webpack" ? "extractCSS" : null,
     message: (_null, { toolType }) =>
       toolType === "webpack"
-        ? "Would you like to generate a HTML template"
+        ? "Would you like to extract css output to a seperate file"
         : null
   },
   {
@@ -46,6 +44,11 @@ module.exports = [
       { title: "nested", value: "nested" },
       { title: "compressed", value: "compressed" }
     ]
+  },
+  {
+    type: "confirm",
+    name: "sourcemaps",
+    message: "Do you want to generate sourcemaps"
   },
   {
     type: "select",
