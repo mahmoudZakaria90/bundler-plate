@@ -27,8 +27,12 @@ log(
 (async () => {
   const response = await prompts(questions);
 
-  const { toolType } = response;
-  log(toolType);
+  const { toolType, packageManager } = response;
+
+  log(`Based on your inputs you chose:
+   - System: ${toolType}
+   - Package manager: ${packageManager}
+  `);
 
   fs.writeFileSync(
     path.resolve(

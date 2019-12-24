@@ -48,21 +48,6 @@ module.exports = [
     ]
   },
   {
-    type: (_null, { toolType }) => (toolType === "gulp" ? "confirm" : null),
-    name: (_null, { toolType }) => (toolType === "gulp" ? "sourcemaps" : null),
-    message: (_null, { toolType }) =>
-      toolType === "gulp" ? "Would you like to generate sourcemaps" : null
-  },
-  {
-    type: (_null, { toolType }) => (toolType === "gulp" ? "confirm" : null),
-    name: (_null, { toolType }) =>
-      toolType === "gulp" ? "externalSourcemap" : null,
-    message: (_null, { toolType }) =>
-      toolType === "gulp"
-        ? "Would you like sourcemaps to be seperated into external folder/files"
-        : null
-  },
-  {
     type: "select",
     name: "packageManager",
     message: "What package manager do you use",
