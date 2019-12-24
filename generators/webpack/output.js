@@ -4,27 +4,20 @@ const { exec } = require("shelljs");
 const wpBase = require("../../base/webpack");
 const babelLoader = require("../../tasks/webpack/babelLoader");
 
-module.exports = ({
-  babelInclude,
-  extractCSS,
-  templateGenerate,
-  packageManager
-}) => {
+module.exports = ({ babelInclude, cssModules, extractCSS, packageManager }) => {
   const path = __dirname + "/../../shell";
 
   // Installing packages
-  if (babelInclude) {
-    log("Installing packages...");
-    exec(
-      `sh ${path}/webpack/${packageManager}/babel-loaders.sh; sh ${path}/webpack/${packageManager}/sass-cssLoaders.sh;${
-        extractCSS
-          ? `sh ${path}/webpack/${packageManager}/miniCSSExtractPlugin.sh`
-          : `sh ${path}/webpack/${packageManager}/style-loader.sh`
-      };${templateGenerate && "yarn add -D html-webpack-plugin"}`
-    );
-    log("Successfully installed packages", "green");
-  }
+  log("Installing packages...");
+  exec(
+    `sh ${path}/webpack/${packageManager}/webpack.sh${babelInclude &&
+      `;sh ${path}/webpack/${packageManager}/babel-loaders.sh`}${
+      extractCSS
+        ? `;sh ${path}/webpack/${packageManager}/miniCSSExtractPlugin.sh`
+        : `;sh ${path}/webpack/${packageManager}/style-loader.sh`
+    }`
+  );
 
   const babelLoaderArg = babelInclude ? babelLoader : null;
-  return wpBase(babelLoaderArg, extractCSS, templateGenerate);
+  return wpBase(babelLoaderArg, cssModules, extractCSS);
 };
