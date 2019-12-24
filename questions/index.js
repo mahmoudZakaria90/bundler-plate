@@ -9,13 +9,12 @@ module.exports = [
     ]
   },
   {
-    type: prev => (prev === "webpack" ? "confirm" : "select"),
-    name: prev => (prev === "webpack" ? "babelInclude" : "markup"),
+    type: prev => (prev === "webpack" ? "confirm" : "confirm"),
+    name: prev => (prev === "webpack" ? "babelInclude" : "pugIncluded"),
     message: prev =>
       prev === "webpack"
         ? "Would you like to transpile ES6 using babel"
-        : "What markup would you like to use?",
-    choices: ["HTML", "Pug"]
+        : "Would you like to use Pug as a template engine instead of HTML"
   },
   {
     type: (_null, { toolType }) => (toolType === "webpack" ? "confirm" : null),
@@ -34,6 +33,19 @@ module.exports = [
       toolType === "webpack"
         ? "Would you like to generate a HTML template"
         : null
+  },
+  {
+    type: (_null, { toolType }) => (toolType === "gulp" ? "select" : null),
+    name: (_null, { toolType }) =>
+      toolType === "gulp" ? "cssOutputStyle" : null,
+    message: (_null, { toolType }) =>
+      toolType === "gulp" ? "How do you want CSS output style" : null,
+    choices: [
+      { title: "expanded", value: "expanded" },
+      { title: "compact", value: "compact" },
+      { title: "nested", value: "nested" },
+      { title: "compressed", value: "compressed" }
+    ]
   },
   {
     type: "select",

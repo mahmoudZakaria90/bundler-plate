@@ -26,21 +26,20 @@ log(
 //Inputs/Questions
 (async () => {
   const response = await prompts(questions);
-  if (
-    Object.keys(response).length !== questions.length &&
-    response.constructor === Object
-  ) {
-    process.exit();
-  }
 
-  const { toolType } = response;
+  const { toolType, packageManager } = response;
+
+  log(`Based on your inputs you chose:
+   - System: ${toolType}
+   - Package manager: ${packageManager}
+  `);
 
   fs.writeFileSync(
     path.resolve(
       process.cwd(),
-      `${toolType}.${toolType === "webpack" && "config."}js`
+      `${toolType}${toolType === "webpack" ? ".config." : "file."}js`
     ),
-    format(require("./generators/output")(response))
+    format(require(`./generators/${toolType}/output`)(response))
   );
   log("Succesfully generated your webpack.config.js", "green");
 })();
