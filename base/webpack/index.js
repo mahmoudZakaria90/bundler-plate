@@ -35,8 +35,9 @@ module.exports = (babelLoader, cssModules, extractCSS) => {
                   loader: "css-loader",
                   options: {
                     importLoaders: 1,
-                    modules: true,
-                    localIdentName: env === "dev" ? "[name]__[local]" :"[name]__[local]__[contentHash:8]";
+                    modules: {
+                      localIdentName: env === "dev" ? "[name]__[local]" :"[name]__[local]__[contentHash:8]"
+                    }
                   }
                 }`
                 }, "sass-loader"]},
