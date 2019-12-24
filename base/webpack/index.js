@@ -51,9 +51,9 @@ module.exports = (babelLoader, cssModules, extractCSS) => {
                   }
                 },
                 {
-                  test : /\.(png|jpe?g|gif)$/,
-                  use  : {
-                      loader  : 'url-loader',
+                  test: /\.(png|jpe?g|gif)$/,
+                  use : {
+                      loader: 'url-loader',
                       name: ${env ===
                         "dev"} ? "[name].[ext]" : "[name].[contentHash:8].[ext]",
                       options : { limit: 8192, outputPath: "assets/images/" },
