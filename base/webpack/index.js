@@ -1,4 +1,4 @@
-module.exports = (babelLoader, cssModules, extractCSS) => {
+module.exports = (babelLoader, cssModules, extractCSS, sourcemaps) => {
   return `const path = require("path");
   const htmlWebpackPlugin = require("html-webpack-plugin");
   ${
@@ -75,5 +75,10 @@ module.exports = (babelLoader, cssModules, extractCSS) => {
             compress: true
           },
           mode: env === "dev" ? "development" : "production",
+          ${
+            sourcemaps
+              ? "devtool: env === 'dev' ? 'inline-cheap-source-map' : 'source-map'"
+              : ""
+          }
       };`;
 };

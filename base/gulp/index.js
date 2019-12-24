@@ -1,10 +1,11 @@
-module.exports = (pugIncluded, cssOutputStyle) => {
+module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
   return `
     const gulp = require("gulp");
     const { dest, series, src, watch, parallel } = gulp;
     const sass = require("gulp-sass");
     const autoPrefixer = require("gulp-autoprefixer");
     ${pugIncluded ? 'const pug = require("gulp-pug");' : ""}
+    ${sourcemaps ? 'const sourcemaps = require("gulp-sourcemaps");' : ""}
     const browserify = require('browserify');
     const babel = require('babelify');
     const source = require('vinyl-source-stream');
@@ -28,8 +29,11 @@ module.exports = (pugIncluded, cssOutputStyle) => {
       return src(sassPath[0])
         .pipe(sass({
           outputStyle: "${cssOutputStyle}",
-        }).on("error", sass.logError))
+        })
+        ${sourcemaps ? ".pipe(sourcemaps.init())" : ""}
+        .on("error", sass.logError))
         .pipe(autoPrefixer())
+        ${sourcemaps ? ".pipe(sourcemaps.write())" : ""}
         .pipe(dest("./dist/css"));
         cb()
     };
@@ -55,8 +59,10 @@ module.exports = (pugIncluded, cssOutputStyle) => {
         .bundle()
         .pipe(source("main.min.js"))
         .pipe(buffer())
+        ${sourcemaps ? ".pipe(sourcemaps.init())" : "\r"}
         .pipe(uglify())
-        .pipe(dest("./dist"));
+        ${sourcemaps ? ".pipe(sourcemaps.write())" : "\r"}
+        .pipe(dest("./dist/js"));
     }
 
     const reload = cb => {

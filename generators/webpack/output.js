@@ -4,7 +4,13 @@ const { exec } = require("shelljs");
 const wpBase = require("../../base/webpack");
 const babelLoader = require("../../tasks/webpack/babelLoader");
 
-module.exports = ({ babelInclude, cssModules, extractCSS, packageManager }) => {
+module.exports = ({
+  babelInclude,
+  cssModules,
+  extractCSS,
+  packageManager,
+  sourcemaps
+}) => {
   const path = __dirname + "/../../shell";
 
   // Installing packages
@@ -21,5 +27,5 @@ module.exports = ({ babelInclude, cssModules, extractCSS, packageManager }) => {
   logSuccess("Successfully installed packages");
 
   const babelLoaderArg = babelInclude ? babelLoader : null;
-  return wpBase(babelLoaderArg, cssModules, extractCSS);
+  return wpBase(babelLoaderArg, cssModules, extractCSS, sourcemaps);
 };

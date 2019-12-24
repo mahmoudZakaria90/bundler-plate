@@ -10,7 +10,7 @@ const questions = require("./questions");
 
 //Intro
 log("Hello and Welcome!");
-log("Let's get started with");
+log("Let's get started with...");
 
 CFonts.say("BundlerPlate.js", {
   font: "block",
@@ -18,7 +18,7 @@ CFonts.say("BundlerPlate.js", {
   letterSpacing: 2
 });
 
-log("A boilerplate or basic config file based on webpack/gulp \n");
+log("A boilerplate or basic config file for webpack/gulp. \n");
 log(
   "Please answer the following questions to generate the best config file for you.\n"
 );

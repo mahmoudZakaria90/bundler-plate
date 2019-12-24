@@ -46,6 +46,11 @@ module.exports = [
     ]
   },
   {
+    type: "confirm",
+    name: "sourcemaps",
+    message: "Do you want to generate sourcemaps"
+  },
+  {
     type: "select",
     name: "packageManager",
     message: "What package manager do you use",
