@@ -1,4 +1,4 @@
-const { log } = require("../../utils");
+const { log, logSuccess } = require("../../utils");
 const { exec } = require("shelljs");
 
 const wpBase = require("../../base/webpack");
@@ -8,7 +8,7 @@ module.exports = ({ babelInclude, cssModules, extractCSS, packageManager }) => {
   const path = __dirname + "/../../shell";
 
   // Installing packages
-  log("Installing packages...");
+  log("Installing packages...", "yellow");
   exec(
     `sh ${path}/webpack/${packageManager}/webpack.sh${babelInclude &&
       `;sh ${path}/webpack/${packageManager}/babel-loaders.sh`}${
@@ -17,6 +17,8 @@ module.exports = ({ babelInclude, cssModules, extractCSS, packageManager }) => {
         : `;sh ${path}/webpack/${packageManager}/style-loader.sh`
     }`
   );
+
+  logSuccess("Successfully installed packages");
 
   const babelLoaderArg = babelInclude ? babelLoader : null;
   return wpBase(babelLoaderArg, cssModules, extractCSS);
