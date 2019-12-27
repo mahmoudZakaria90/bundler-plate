@@ -2,7 +2,6 @@ const { log, logSuccess } = require("../../utils");
 const { exec } = require("shelljs");
 
 const wpBase = require("../../base/webpack");
-const babelLoader = require("../../tasks/webpack/babelLoader");
 
 module.exports = ({
   babelInclude,
@@ -26,6 +25,5 @@ module.exports = ({
 
   logSuccess("Successfully installed packages");
 
-  const babelLoaderArg = babelInclude ? babelLoader : null;
-  return wpBase(babelLoaderArg, cssModules, extractCSS, sourcemaps);
+  return wpBase(babelInclude, cssModules, extractCSS, sourcemaps);
 };

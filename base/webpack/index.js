@@ -1,13 +1,18 @@
-module.exports = (babelLoader, cssModules, extractCSS, sourcemaps) => {
+const babelLoader = require("./loaders/babelLoader");
+const css_sassLoader = require("./loaders/css_sassLoader");
+const file_urlLoader = require("./loaders/file_urlLoader");
+const plugins = require("./plugins");
+
+module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
   return `const path = require("path");
+  const env = process.env.NODE_ENV;
   const htmlWebpackPlugin = require("html-webpack-plugin");
+  const { CleanWebpackPlugin } = require("clean-webpack-plugin");
   ${
     extractCSS
       ? 'const miniCSSExtractPlugin = require("mini-css-extract-plugin");'
       : ""
-  }
-
-    const env = process.env.NODE_ENV;
+    }
 
     module.exports = {
         entry: {
@@ -24,61 +29,20 @@ module.exports = (babelLoader, cssModules, extractCSS, sourcemaps) => {
         },
         module: {
             rules: [
-                ${babelLoader ? `${babelLoader},` : ""} 
-                {test: /\\.s[a|c]ss$/, use: [${
-                  extractCSS ? "miniCSSExtractPlugin.loader" : `"style-loader"`
-                }, 
-                ${
-                  !cssModules
-                    ? `"css-loader"`
-                    : `{
-                  loader: "css-loader",
-                  options: {
-                    importLoaders: 1,
-                    modules: {
-                      localIdentName: env === "dev" ? "[name]__[local]" :"[name]__[local]__[contentHash:8]"
-                    }
-                  }
-                }`
-                }, "sass-loader"]},
-                {
-                  test: /\\.(woff(2)?|ttf|eot|svg)(\\?v=\\d+\\.\\d+\\.\\d+)?$/,
-                  loader: "file-loader",
-                  options: {
-                    name: env === "dev" ? "[name].[ext]" : "[name].[contentHash:8].[ext]",
-                    outputPath: "assets/fonts/"
-                  }
-                },
-                {
-                  test: /\\.(png|jpe?g|gif)$/,
-                  use : {
-                      loader: 'url-loader',
-                      options : { limit: 8192, outputPath: "assets/images/" },
-                  },
-              },
+                ${babelLoader(babelInclude)}${css_sassLoader(extractCSS, cssModules)},${file_urlLoader}
             ]
         },
-        plugins: [
-            ${
-              extractCSS
-                ? `new miniCSSExtractPlugin({
-                  filename: env === "dev" ? "[name].css" : "[name].[contentHash:8].css", 
-                  chunkFilename: env === "dev" ? "[name].css" : "[name].[contentHash:8].css", 
-                }),`
-                : ""
-            } 
-             new htmlWebpackPlugin()
-          ],
-          devServer: {
-            contentBase: "./dist",
-            port: 8000,
-            compress: true
-          },
-          mode: env === "dev" ? "development" : "production",
-          ${
-            sourcemaps
-              ? "devtool: env === 'dev' ? 'inline-cheap-source-map' : 'source-map'"
-              : ""
-          }
+        plugins: ${plugins(extractCSS)},
+        devServer: {
+          contentBase: "./dist",
+          port: 8000,
+          compress: true
+        },
+        mode: env === "dev" ? "development" : "production",
+        ${
+    sourcemaps
+      ? "devtool: env === 'dev' ? 'inline-cheap-source-map' : 'source-map'"
+      : ""
+    }
       };`;
 };

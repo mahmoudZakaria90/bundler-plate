@@ -1,11 +1,9 @@
 module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
   return `
     const gulp = require("gulp");
-    const { dest, series, src, watch, parallel } = gulp;
+    const { dest, series, src, watch: gulpWatch, parallel } = gulp;
     const sass = require("gulp-sass");
     const autoPrefixer = require("gulp-autoprefixer");
-    ${pugIncluded ? 'const pug = require("gulp-pug");' : ""}
-    ${sourcemaps ? 'const sourcemaps = require("gulp-sourcemaps");' : ""}
     const browserify = require('browserify');
     const babel = require('babelify');
     const source = require('vinyl-source-stream');
@@ -13,45 +11,47 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     const browserSync = require('browser-sync').create();
     const hotReload = browserSync.reload;
 
+    ${pugIncluded ? 'const pug = require("gulp-pug");' : ""}
+    ${sourcemaps ? 'const sourcemaps = require("gulp-sourcemaps");' : ""}
+    
     //Production
     const uglify = require('gulp-uglify');
     
 
     //paths
-    const pugPath = ['./src/pug/*.pug', './src/pug/**/*.pug'];
-    const sassPath = ['./src/sass/*.s[a|c]ss', './src/sass/**/*.s[a|c]ss'];
-    const jsPath = ['./src/js/*.js', './src/js/**/*.js'];
+    const pugPath =  './src/pug/**/*.pug';
+    const sassPath = './src/sass/**/*.s[a|c]ss';
+    const jsPath = './src/js/**/*.js';
 
     //Styles
     sass.compiler = require("node-sass");
     
-    const styles = cb => {
-      return src(sassPath[0])
+    const styles = () => {
+      return src(sassPath)
+        ${sourcemaps ? ".pipe(sourcemaps.init())" : ""}
         .pipe(sass({
           outputStyle: "${cssOutputStyle}",
         })
-        ${sourcemaps ? ".pipe(sourcemaps.init())" : ""}
         .on("error", sass.logError))
         .pipe(autoPrefixer())
         ${sourcemaps ? ".pipe(sourcemaps.write())" : ""}
         .pipe(dest("./dist/css"));
-        cb()
+        
     };
 
     ${
-      pugIncluded
-        ? `//Pug
-           const pugIntoHTML = cb => {
-            src(pugPath[0])
+    pugIncluded
+      ? `//Pug
+           const pugIntoHTML = () => {
+            return src(pugPath)
               .pipe(pug())
               .pipe(dest("./dist/"));
-              cb()
           }`
-        : ""
+      : ""
     }
 
     //JS bundle
-    const scripts = cb => {
+    const scripts = () => {
       return browserify("./src/js/main.js")
         .transform(babel, {
           presets: ["@babel/preset-env"]
@@ -59,9 +59,9 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
         .bundle()
         .pipe(source("main.min.js"))
         .pipe(buffer())
-        ${sourcemaps ? ".pipe(sourcemaps.init())" : "\r"}
+        ${sourcemaps ? ".pipe(sourcemaps.init())" : ""}
         .pipe(uglify())
-        ${sourcemaps ? ".pipe(sourcemaps.write())" : "\r"}
+        ${sourcemaps ? ".pipe(sourcemaps.write())" : ""}
         .pipe(dest("./dist/js"));
     }
 
@@ -72,10 +72,10 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     
     
     //Watch 
-    const gulpWatch = () => {
-        watch(pugPath, series(pugIntoHTML, reload));
-        watch(sassPath, series(styles, reload));
-        watch(jsPath, series(scripts, reload));
+    const gulpWatchGroup = () => {
+        gulpWatch(pugPath, series(pugIntoHTML, reload));
+        gulpWatch(sassPath, series(styles, reload));
+        gulpWatch(jsPath, series(scripts, reload));
     }
 
     //Localhost 
@@ -88,17 +88,18 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     }
 
     const dist = series(pugIntoHTML, styles, scripts);
-    const dev = series(dist, parallel(gulpWatch, serve));
+    const dev = series(dist, parallel(gulpWatchGroup, serve));
     
     //Fire!
     
     //Singles
     exports.styles = styles;
-    exports.pug = pug;
     exports.scripts = scripts;
+    ${pugIncluded ? "exports.pug = pugIntoHTML" : ""};
     
     //Series
     exports.dev = dev;
+    exports.watch = gulpWatchGroup;
     exports.default = dist;
     `;
 };
