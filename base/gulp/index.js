@@ -4,8 +4,6 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     const { dest, series, src, watch, parallel } = gulp;
     const sass = require("gulp-sass");
     const autoPrefixer = require("gulp-autoprefixer");
-    ${pugIncluded ? 'const pug = require("gulp-pug");' : ""}
-    ${sourcemaps ? 'const sourcemaps = require("gulp-sourcemaps");' : ""}
     const browserify = require('browserify');
     const babel = require('babelify');
     const source = require('vinyl-source-stream');
@@ -13,6 +11,9 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     const browserSync = require('browser-sync').create();
     const hotReload = browserSync.reload;
 
+    ${pugIncluded ? 'const pug = require("gulp-pug");' : ""}
+    ${sourcemaps ? 'const sourcemaps = require("gulp-sourcemaps");' : ""}
+    
     //Production
     const uglify = require('gulp-uglify');
     
@@ -59,9 +60,9 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
         .bundle()
         .pipe(source("main.min.js"))
         .pipe(buffer())
-        ${sourcemaps ? ".pipe(sourcemaps.init())" : "\r"}
+        ${sourcemaps ? ".pipe(sourcemaps.init())" : ""}
         .pipe(uglify())
-        ${sourcemaps ? ".pipe(sourcemaps.write())" : "\r"}
+        ${sourcemaps ? ".pipe(sourcemaps.write())" : ""}
         .pipe(dest("./dist/js"));
     }
 
