@@ -1,4 +1,4 @@
-const { log, logSuccess } = require("../../utils");
+const { log } = require("../../utils");
 const { exec } = require("shelljs");
 
 const gulpBase = require("../../base/gulp");
@@ -18,7 +18,7 @@ module.exports = ({
       `;sh ${path}/gulp/${packageManager}/gulp-pug.sh`}${sourcemaps &&
       `;sh ${path}/gulp/${packageManager}/gulp-sourcemaps.sh`}`
   );
-  logSuccess("Successfully installed packages.");
+  log("Successfully installed packages.", "green");
 
   return gulpBase(pugIncluded, cssOutputStyle, sourcemaps);
 };

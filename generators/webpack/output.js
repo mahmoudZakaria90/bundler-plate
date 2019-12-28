@@ -1,4 +1,4 @@
-const { log, logSuccess } = require("../../utils");
+const { log } = require("../../utils");
 const { exec } = require("shelljs");
 
 const wpBase = require("../../base/webpack");
@@ -23,7 +23,7 @@ module.exports = ({
     }`
   );
 
-  logSuccess("Successfully installed packages");
+  log("Successfully installed packages", "green");
 
   return wpBase(babelInclude, cssModules, extractCSS, sourcemaps);
 };
