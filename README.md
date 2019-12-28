@@ -11,6 +11,3 @@
 2. Give inputs to the generated questions.
 3. Enjoy! <span style="color:red">&hearts;</span>.
 
-
-For source code or contribution:
-https://github.com/mahmoudZakaria90/bundler-plate
