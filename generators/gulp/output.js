@@ -12,7 +12,7 @@ module.exports = ({
   const path = __dirname + "/../../shell";
 
   // Installing packages
-  log("Installing packages...", "yellow");
+  log("Installing packages and configs...", "yellow");
   exec(
     `sh ${path}/gulp/${packageManager}/gulp.sh ${pugIncluded &&
       `;sh ${path}/gulp/${packageManager}/gulp-pug.sh`}${sourcemaps &&

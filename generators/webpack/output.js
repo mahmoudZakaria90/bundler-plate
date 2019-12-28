@@ -13,7 +13,7 @@ module.exports = ({
   const path = __dirname + "/../../shell";
 
   // Installing packages
-  log("Installing packages...", "yellow");
+  log("Installing packages and configs...", "yellow");
   exec(
     `sh ${path}/webpack/${packageManager}/webpack.sh${babelInclude &&
       `;sh ${path}/webpack/${packageManager}/babel-loaders.sh`}${
