@@ -1,3 +1,11 @@
+/**
+ *
+ * @param {boolean} extractCSS
+ *
+ * @return {string}
+ *
+ */
+
 module.exports = extractCSS => {
   return `[
          new htmlWebpackPlugin(),

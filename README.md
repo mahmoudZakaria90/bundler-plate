@@ -1,9 +1,9 @@
 # bundler-plate
-### A boilerplate and a basic config file for webpack/gulp based on user input.
+Generates a boilerplate and a basic config file for webpack/gulp based on user input.
 
 
 # Installation
-`yarn add -D bundler-plate` || `npm i -D bundler-plate`
+`yarn add -D bundler-plate` or `npm i -D bundler-plate`
 
 # Usage 
 

@@ -3,6 +3,18 @@ const css_sassLoader = require("./loaders/css_sassLoader");
 const file_urlLoader = require("./loaders/file_urlLoader");
 const plugins = require("./plugins");
 
+/**
+ *
+ * @param {boolean} babelInclude
+ * @param {boolean} cssModules
+ * @param {boolean} extractCSS
+ * @param {boolean} sourcemaps
+ *
+ *
+ * @return {string}
+ *
+ */
+
 module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
   return `const path = require("path");
   const env = process.env.NODE_ENV;
@@ -12,7 +24,7 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
     extractCSS
       ? 'const miniCSSExtractPlugin = require("mini-css-extract-plugin");'
       : ""
-    }
+  }
 
     module.exports = {
         entry: {
@@ -29,7 +41,10 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
         },
         module: {
             rules: [
-                ${babelLoader(babelInclude)}${css_sassLoader(extractCSS, cssModules)},${file_urlLoader}
+                ${babelLoader(babelInclude)}${css_sassLoader(
+    extractCSS,
+    cssModules
+  )},${file_urlLoader}
             ]
         },
         plugins: ${plugins(extractCSS)},
@@ -40,9 +55,9 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
         },
         mode: env === "dev" ? "development" : "production",
         ${
-    sourcemaps
-      ? "devtool: env === 'dev' ? 'inline-cheap-source-map' : 'source-map'"
-      : ""
-    }
+          sourcemaps
+            ? "devtool: env === 'dev' ? 'inline-cheap-source-map' : 'source-map'"
+            : ""
+        }
       };`;
 };

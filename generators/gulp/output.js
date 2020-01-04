@@ -1,13 +1,24 @@
 const { log } = require("../../utils");
 const { exec } = require("shelljs");
-
 const gulpBase = require("../../base/gulp");
+
+/**
+ *
+ * @param {boolean} pugIncluded
+ * @param {string} cssOutputStyle
+ * @param {boolean} sourcemaps
+ * @param {string} packageManager
+ *
+ *
+ * @return {string}
+ *
+ */
 
 module.exports = ({
   pugIncluded,
   cssOutputStyle,
-  packageManager,
-  sourcemaps
+  sourcemaps,
+  packageManager
 }) => {
   const path = __dirname + "/../../shell";
 

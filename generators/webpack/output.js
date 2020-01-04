@@ -3,12 +3,25 @@ const { exec } = require("shelljs");
 
 const wpBase = require("../../base/webpack");
 
+/**
+ *
+ * @param {boolean} babelInclude
+ * @param {boolean} cssModules
+ * @param {boolean} extractCSS
+ * @param {boolean} sourcemaps
+ * @param {string} packageManager
+ *
+ *
+ * @return {string}
+ *
+ */
+
 module.exports = ({
   babelInclude,
   cssModules,
   extractCSS,
-  packageManager,
-  sourcemaps
+  sourcemaps,
+  packageManager
 }) => {
   const path = __dirname + "/../../shell";
 

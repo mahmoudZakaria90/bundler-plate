@@ -1,3 +1,12 @@
+/**
+ *
+ * @param {boolean} cssModules
+ * @param {boolean} extractCSS
+ *
+ * @return {string}
+ *
+ */
+
 module.exports = (extractCSS, cssModules) => {
   return `
     {

@@ -1,3 +1,11 @@
+/**
+ *
+ * @param {boolean} babelInclude
+ *
+ * @return {string}
+ *
+ */
+
 module.exports = babelInclude => {
   return babelInclude
     ? `{
