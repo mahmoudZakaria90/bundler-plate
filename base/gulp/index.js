@@ -1,3 +1,13 @@
+/**
+ *
+ * @param {boolean} pugIncluded
+ * @param {string} cssOutputStyle
+ * @param {boolean} sourcemaps
+ *
+ * @return {string}
+ *
+ */
+
 module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
   return `
     const gulp = require("gulp");
@@ -40,14 +50,14 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     };
 
     ${
-    pugIncluded
-      ? `//Pug
+      pugIncluded
+        ? `//Pug
            const pugIntoHTML = () => {
             return src(pugPath)
               .pipe(pug())
               .pipe(dest("./dist/"));
           }`
-      : ""
+        : ""
     }
 
     //JS bundle
