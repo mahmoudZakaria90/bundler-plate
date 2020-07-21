@@ -1,5 +1,5 @@
 # bundler-plate
-Generates a boilerplate and a basic config file for webpack/gulp based on user input.
+A CLI generates a boilerplate and config file for webpack/gulp with the most recommended and commonly used configurations.
 
 
 # Installation
