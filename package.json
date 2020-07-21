@@ -1,6 +1,6 @@
 {
   "name": "bundler-plate",
-  "description": "A boilerplate and a basic config file for webpack/gulp based on user input.",
+  "description": "A CLI generates a boilerplate and config file for webpack/gulp with the most recommended and commonly used configurations.",
   "homepage": "https://github.com/mahmoudZakaria90/bundler-plate",
   "repository": "https://github.com/mahmoudZakaria90/bundler-plate",
   "keywords": [
