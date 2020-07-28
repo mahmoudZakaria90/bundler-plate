@@ -25,7 +25,7 @@ module.exports = ({
   // Installing packages
   log("Installing packages and configs...", "yellow");
   exec(
-    `sh ${path}/gulp/${packageManager}/gulp.sh;sh ${path}/gulp/${packageManager}/${sassSyntax}.sh${pugIncluded && `;sh ${path}/gulp/${packageManager}/gulp-pug.sh`}${sourcemaps && `;sh ${path}/gulp/${packageManager}/gulp-sourcemaps.sh`}`
+    `sh ${path}/gulp/${packageManager}/gulp.sh;sh ${path}/gulp/${packageManager}/${sassSyntax}.sh ${pugIncluded && `;sh ${path}/gulp/${packageManager}/gulp-pug.sh`} ${sourcemaps && `;sh ${path}/gulp/${packageManager}/gulp-sourcemaps.sh`}`
   );
   log("Successfully installed packages.", "green");
 
