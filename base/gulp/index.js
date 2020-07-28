@@ -29,7 +29,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     
 
     //paths
-    const pugPath =  './src/pug/**/*.pug';
+    ${pugIncluded ? "const pugPath =  './src/pug/**/*.pug';" : "const htmlPath =  './public/**/*.html';"}
     const sassPath = './src/sass/**/*.s[a|c]ss';
     const jsPath = './src/js/**/*.js';
 
@@ -50,14 +50,18 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     };
 
     ${
-      pugIncluded
-        ? `//Pug
+    pugIncluded
+      ? `//Pug
            const pugIntoHTML = () => {
             return src(pugPath)
               .pipe(pug())
               .pipe(dest("./dist/"));
           }`
-        : ""
+      : `//HTML
+          const html = () => {
+          return src(htmlPath)
+            .pipe(dest("./dist/"));
+        }`
     }
 
     //JS bundle
@@ -83,7 +87,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     
     //Watch 
     const gulpWatchGroup = () => {
-        ${pugIncluded ? "gulpWatch(pugPath, series(pugIntoHTML, reload));" : ""}
+        ${pugIncluded ? "gulpWatch(pugPath, series(pugIntoHTML, reload));" : "gulpWatch(htmlPath, series(html, reload));"}
         gulpWatch(sassPath, series(styles, reload));
         gulpWatch(jsPath, series(scripts, reload));
     }
@@ -97,7 +101,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
         })
     }
 
-    const dist = series(${pugIncluded ? "pugIntoHTML," : ""} styles, scripts);
+    const dist = series(${pugIncluded ? "pugIntoHTML" : "html"}, styles, scripts);
     const dev = series(dist, parallel(gulpWatchGroup, serve));
     
     //Fire!
