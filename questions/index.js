@@ -35,6 +35,17 @@ module.exports = [
   {
     type: (_null, { toolType }) => (toolType === "gulp" ? "select" : null),
     name: (_null, { toolType }) =>
+      toolType === "gulp" ? "sassSyntax" : null,
+    message: (_null, { toolType }) =>
+      toolType === "gulp" ? "What sass syntax do you want to use" : null,
+    choices: [
+      { title: ".sass", value: "dart-sass" },
+      { title: ".scss", value: "node-sass" }
+    ]
+  },
+  {
+    type: (_null, { toolType }) => (toolType === "gulp" ? "select" : null),
+    name: (_null, { toolType }) =>
       toolType === "gulp" ? "cssOutputStyle" : null,
     message: (_null, { toolType }) =>
       toolType === "gulp" ? "How do you want CSS output style" : null,

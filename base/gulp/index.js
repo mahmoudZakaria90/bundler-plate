@@ -8,7 +8,7 @@
  *
  */
 
-module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
+module.exports = (pugIncluded, sassSyntax, cssOutputStyle, sourcemaps) => {
   return `
     const gulp = require("gulp");
     const { dest, series, src, watch: gulpWatch, parallel } = gulp;
@@ -34,7 +34,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     const jsPath = './src/js/**/*.js';
 
     //Styles
-    sass.compiler = require("node-sass");
+    sass.compiler = require("${sassSyntax}");
     
     const styles = () => {
       return src(sassPath)

@@ -16,20 +16,18 @@ const gulpBase = require("../../base/gulp");
 
 module.exports = ({
   pugIncluded,
+  sassSyntax,
   cssOutputStyle,
   sourcemaps,
   packageManager
 }) => {
   const path = __dirname + "/../../shell";
-
   // Installing packages
   log("Installing packages and configs...", "yellow");
   exec(
-    `sh ${path}/gulp/${packageManager}/gulp.sh ${pugIncluded &&
-      `;sh ${path}/gulp/${packageManager}/gulp-pug.sh`}${sourcemaps &&
-      `;sh ${path}/gulp/${packageManager}/gulp-sourcemaps.sh`}`
+    `sh ${path}/gulp/${packageManager}/gulp.sh;sh ${path}/gulp/${packageManager}/${sassSyntax}.sh${pugIncluded && `;sh ${path}/gulp/${packageManager}/gulp-pug.sh`}${sourcemaps && `;sh ${path}/gulp/${packageManager}/gulp-sourcemaps.sh`}`
   );
   log("Successfully installed packages.", "green");
 
-  return gulpBase(pugIncluded, cssOutputStyle, sourcemaps);
+  return gulpBase(pugIncluded, sassSyntax, cssOutputStyle, sourcemaps);
 };
