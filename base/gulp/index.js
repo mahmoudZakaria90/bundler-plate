@@ -83,7 +83,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     
     //Watch 
     const gulpWatchGroup = () => {
-        gulpWatch(pugPath, series(pugIntoHTML, reload));
+        ${pugIncluded ? "gulpWatch(pugPath, series(pugIntoHTML, reload));" : ""}
         gulpWatch(sassPath, series(styles, reload));
         gulpWatch(jsPath, series(scripts, reload));
     }
@@ -97,7 +97,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
         })
     }
 
-    const dist = series(pugIntoHTML, styles, scripts);
+    const dist = series(${pugIncluded ? "pugIntoHTML," : ""} styles, scripts);
     const dev = series(dist, parallel(gulpWatchGroup, serve));
     
     //Fire!
