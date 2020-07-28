@@ -29,7 +29,7 @@ module.exports = (pugIncluded, cssOutputStyle, sourcemaps) => {
     
 
     //paths
-    ${pugIncluded ? "const pugPath =  './src/pug/**/*.pug';" : "const htmlPath =  './public/**/*.html';"}
+    ${pugIncluded ? "const pugPath =  './src/pug/**/*.pug';" : "const htmlPath =  './src/**/*.html';"}
     const sassPath = './src/sass/**/*.s[a|c]ss';
     const jsPath = './src/js/**/*.js';
 
