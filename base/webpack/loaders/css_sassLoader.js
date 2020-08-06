@@ -12,17 +12,21 @@ module.exports = (extractCSS, cssModules) => {
     {
      test: /\\.s[a|c]ss$/, 
      use: [${extractCSS ? "miniCSSExtractPlugin.loader" : `"style-loader"`}, 
-      ${
-        !cssModules
-          ? `"css-loader"`
-          : `{
-        loader: "css-loader",
+      ${!cssModules
+      ? `"css-loader?url=false"`
+      : `{
+        loader: "css-loader?url=false",
         options: {
-          importLoaders: 1,
+          importLoaders: 2,
           modules: {
-            localIdentName: env === "dev" ? "[name]__[local]" :"[name]__[local]__[contentHash:8]"
+            localIdentName:"[name]__[local]__[contentHash:8]"
           }
         }
       }`
-      }, "sass-loader"]}`;
+    },{
+      loader: "postcss-loader",
+      options: {
+        plugins: () => [autoprefixer()]
+      }
+    }, "sass-loader"]}`;
 };

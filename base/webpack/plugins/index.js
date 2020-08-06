@@ -8,15 +8,13 @@
 
 module.exports = extractCSS => {
   return `[
-         new htmlWebpackPlugin(),
+         new HtmlWebpackPlugin(),
          new CleanWebpackPlugin(),
-         ${
-           extractCSS
-             ? `new miniCSSExtractPlugin({
-                filename: env === "dev" ? "[name].css" : "[name].[contentHash:8].css", 
-                chunkFilename: env === "dev" ? "[name].css" : "[name].[contentHash:8].css", 
-              })`
-             : ""
-         } 
+         ${extractCSS ? `new MiniCSSExtractPlugin({
+              filename: env ==="dev" ? "assets/css/[name].css" : "assets/css/[name].[contentHash:8].css", 
+              chunkFilename: env ==="dev" ? "assets/css/[name].css" : "assets/css/[name].[contentHash:8].css", 
+            })`
+      : ""
+    } 
       ]`;
 };

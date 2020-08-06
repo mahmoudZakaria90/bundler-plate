@@ -102,7 +102,7 @@ module.exports = (pugIncluded, sassSyntax, cssOutputStyle, sourcemaps) => {
     }
 
     const dist = series(${pugIncluded ? "pugIntoHTML" : "html"}, styles, scripts);
-    const dev = series(dist, parallel(gulpWatchGroup, serve));
+    const serve = series(dist, parallel(gulpWatchGroup, serve));
     
     //Fire!
     
@@ -112,7 +112,7 @@ module.exports = (pugIncluded, sassSyntax, cssOutputStyle, sourcemaps) => {
     ${pugIncluded ? "exports.pug = pugIntoHTML" : ""};
     
     //Series
-    exports.dev = dev;
+    exports.serve = serve;
     exports.watch = gulpWatchGroup;
     exports.default = dist;
     `;

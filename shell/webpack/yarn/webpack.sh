@@ -1,1 +1,1 @@
-yarn add -D webpack webpack-cli sass sass-loader css-loader file-loader url-loader html-webpack-plugin clean-webpack-plugin webpack-dev-server
+yarn add -D webpack webpack-cli sass sass-loader css-loader postcss-loader autoprefixer file-loader html-webpack-plugin  webpack-dev-server clean-webpack-plugin cross-env
