@@ -4,7 +4,7 @@ A CLI generates a boilerplate and config file for webpack/gulp with the most rec
 
 # Installation
 ```
-yarn add -D bundler-plate || npm i -D bundler-plate
+npm i -D bundler-plate
 ```
 
 # Usage 
