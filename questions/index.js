@@ -9,7 +9,7 @@ module.exports = [
     ]
   },
   {
-    type: prev => (prev === "webpack" ? "confirm" : "confirm"),
+    type: "confirm",
     name: prev => (prev === "webpack" ? "babelInclude" : "pugIncluded"),
     message: prev =>
       prev === "webpack"

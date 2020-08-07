@@ -23,9 +23,8 @@ yarn add -D bundler-plate || npm i -D bundler-plate
  ```
  {
  "build": "gulp", 
- "serve": "gulp serve"
+ "serve": "gulp serve",
+ "watch": "gulp watch"
  }
  ```
-
-* Enjoy! <span style="color:red">&hearts;</span>.
 

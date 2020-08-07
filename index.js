@@ -19,9 +19,9 @@ say("BundlerPlate.js", {
   letterSpacing: 2
 });
 
-log("A boilerplate or basic config file for webpack/gulp. \n");
+log("Generate a boilerplate webpack/gulp config file. \n");
 log(
-  "Please answer the following questions to generate the best config file for you.\n"
+  "Please provide the following inputs to get you started.\n"
 );
 
 //Inputs/Questions
@@ -38,9 +38,9 @@ log(
   loggingChosenOptions(response);
   log(
     `- Using sourcemaps: ${
-      sourcemaps
-        ? chalk.bold.bgGreen.white(sourcemaps)
-        : chalk.bold.bgRed.white(sourcemaps)
+    sourcemaps
+      ? chalk.bold.bgGreen.white(sourcemaps)
+      : chalk.bold.bgRed.white(sourcemaps)
     }`
   );
 
