@@ -10,7 +10,7 @@
     "build-system",
     "task-runner"
   ],
-  "version": "1.6.2",
+  "version": "1.6.3",
   "bin": {
     "bp": "./index.js"
   },
