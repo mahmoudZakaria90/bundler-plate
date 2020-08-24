@@ -28,6 +28,7 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
     }
 
     module.exports = {
+        mode: env === "dev" ? "development" : "production",
         entry: {
             index: path.resolve(__dirname, "index.js"),
             // Continue add your multiple entries if any...
@@ -46,7 +47,6 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
             ]
         },
         plugins: ${plugins(extractCSS)},
-        mode: env === "dev" ? "development" : "production",
         ${
     sourcemaps
       ? "devtool: env === 'dev' ? 'inline-cheap-source-map' : 'source-map'"
