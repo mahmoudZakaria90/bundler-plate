@@ -15,7 +15,7 @@ const plugins = require("./plugins");
  *
  */
 
-module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
+module.exports = (babelInclude, extractCSS, sourcemaps) => {
   return `const path = require("path");
   const env = process.env.NODE_ENV;
   const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -30,7 +30,7 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
     module.exports = {
         mode: env === "dev" ? "development" : "production",
         entry: {
-            index: path.resolve(__dirname, "index.js"),
+            index: path.resolve(__dirname, "src/index.js"),
             // Continue add your multiple entries if any...
         },
         output: {
@@ -41,8 +41,7 @@ module.exports = (babelInclude, cssModules, extractCSS, sourcemaps) => {
         module: {
             rules: [
                 ${babelLoader(babelInclude)}${css_sassLoader(
-      extractCSS,
-      cssModules
+      extractCSS
     )},${file_urlLoader}
             ]
         },

@@ -6,7 +6,6 @@ module.exports = response => {
     babelInclude,
     pugIncluded,
     sassSyntax,
-    cssModules,
     extractCSS,
     cssOutputStyle
   } = response;
@@ -16,13 +15,6 @@ module.exports = response => {
       babelInclude
         ? chalk.bold.bgGreen.white(babelInclude)
         : chalk.bold.bgRed.white(babelInclude)
-      }`
-    );
-    log(
-      `- Using CSS modules: ${
-      cssModules
-        ? chalk.bold.bgGreen.white(cssModules)
-        : chalk.bold.bgRed.white(cssModules)
       }`
     );
     log(
