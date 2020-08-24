@@ -3,15 +3,14 @@ A CLI generates a boilerplate and config file for webpack/gulp with the most rec
 
 
 # Installation
-```
-npm i -D bundler-plate
-```
+`npm i -D bundler-plate or yarn add -D bundler-plate`
 
 # Usage 
 
 * Run `bp` or `npx bp`.
-* Give inputs to the generated questions.
-* For `Webpack` Add these 2 npm scripts to your package.json
+* Give inputs to the generated questions.<br/><br/>
+
+For `Webpack` Add these 2 npm scripts to your package.json
  ```
  {
  "build": "cross-env NODE_ENV=prod webpack", 
@@ -19,7 +18,7 @@ npm i -D bundler-plate
  }
  ```
 
- * For `gulp` Add these 2 npm scripts to your package.json
+For `gulp` Add these 3 npm scripts to your package.json
  ```
  {
  "build": "gulp", 
