@@ -1,29 +1,18 @@
 /**
  *
- * @param {boolean} cssModules
  * @param {boolean} extractCSS
  *
  * @return {string}
  *
  */
 
-module.exports = (extractCSS, cssModules) => {
+module.exports = (extractCSS) => {
   return `
     {
      test: /\\.s[a|c]ss$/, 
-     use: [${extractCSS ? "miniCSSExtractPlugin.loader" : `"style-loader"`}, 
-      ${!cssModules
-      ? `"css-loader?url=false"`
-      : `{
-        loader: "css-loader?url=false",
-        options: {
-          importLoaders: 2,
-          modules: {
-            localIdentName:"[name]__[local]__[contentHash:8]"
-          }
-        }
-      }`
-    },{
+     use: [${extractCSS ? "MiniCSSExtractPlugin.loader" : `"style-loader"`},
+    "css-loader?url=false",
+    {
       loader: "postcss-loader",
       options: {
         plugins: () => [autoprefixer()]
