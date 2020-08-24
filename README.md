@@ -12,20 +12,22 @@ Or<br>
 * Run `bp` or `npx bp`.
 * Give inputs/answers to the generated questions.<br/><br/>
 
-For `Webpack` Add these 2 npm scripts to your package.json
+For `Webpack` Add these 2 npm scripts to your `package.json`.
  ```
- {
- "build": "cross-env NODE_ENV=prod webpack", 
- "serve": "cross-env NODE_ENV=dev webpack-dev-server"
+ "scripts": {
+    ...
+    "build": "cross-env NODE_ENV=prod webpack", 
+    "serve": "cross-env NODE_ENV=dev webpack-dev-server"
  }
  ```
 
-For `gulp` Add these 3 npm scripts to your package.json
+For `gulp` Add these 3 npm scripts to your `package.json`.
  ```
- {
- "build": "gulp", 
- "serve": "gulp serve",
- "watch": "gulp watch"
+ "scripts": {
+    ...
+    "build": "gulp", 
+    "serve": "gulp serve",
+    "watch": "gulp watch"
  }
  ```
 
