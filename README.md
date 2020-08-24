@@ -10,7 +10,7 @@ Or<br>
 # Usage 
 
 * Run `bp` or `npx bp`.
-* Give inputs to the generated questions.<br/><br/>
+* Give inputs/answers to the generated questions.<br/><br/>
 
 For `Webpack` Add these 2 npm scripts to your package.json
  ```
