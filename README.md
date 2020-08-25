@@ -1,6 +1,7 @@
 # bundler-plate
 A CLI generates a boilerplate and config file for webpack/gulp with the most recommended and commonly used configurations.
 
+!["Bundler-plate demo"](https://media.giphy.com/media/gkGAX3GL7lfmRCq5ry/giphy.gif)
 
 # Installation
 `npm i -D bundler-plate`  
