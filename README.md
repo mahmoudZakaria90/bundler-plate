@@ -13,7 +13,7 @@ Or<br>
 * Run `bp` or `npx bp`.
 * Give inputs/answers to the generated questions.<br/><br/>
 
-For `Webpack` Add these 2 npm scripts to your `package.json`.
+For `Webpack` Add these 2 npm scripts to your `package.json`:
  ```
  "scripts": {
     ...
@@ -22,7 +22,7 @@ For `Webpack` Add these 2 npm scripts to your `package.json`.
  }
  ```
 
-For `gulp` Add these 3 npm scripts to your `package.json`.
+For `gulp` Add these 3 npm scripts to your `package.json`:
  ```
  "scripts": {
     ...
